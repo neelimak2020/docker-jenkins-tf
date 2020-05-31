@@ -27,7 +27,7 @@ try {
 	variable: 'DockerPWD'
 	)]) {
 	   ansiColor('xterm'){
-    		sh "docker login -u neelima2020 -p '${DockerPWD}"
+    		sh "docker login -u neelima2020 -p ${DockerPWD}"
 		sh 'docker push neelima2020/my-app:1.0.0'
 		}
 	     }
