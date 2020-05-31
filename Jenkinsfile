@@ -23,7 +23,7 @@ try {
  stage('Push Docker Image'){
      node{
 	withCredentials([
-	string(credentialsId: 'Docker-PWD', 
+	string(credentialsId: 'DockerPWD', 
 	variable: 'DockerPWD'
 	)]) {
 	   ansiColor('xterm'){
