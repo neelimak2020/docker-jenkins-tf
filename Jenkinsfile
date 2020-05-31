@@ -47,10 +47,11 @@ try {
 
   // Run terraform plan
   stage('plan') {
-    node {
+    node {	    
+	   
       withCredentials([[
         $class: 'AmazonWebServicesCredentialsBinding',
-        credentialsId: credentialsId,
+        credentialsId: ' credentialsId',
         accessKeyVariable: 'AWS_ACCESS_KEY_ID',
         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
       ]]) {
@@ -68,7 +69,7 @@ try {
       node {
         withCredentials([[
           $class: 'AmazonWebServicesCredentialsBinding',
-          credentialsId: credentialsId,
+          credentialsId: ' credentialsId',
           accessKeyVariable: 'AWS_ACCESS_KEY_ID',
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
@@ -84,7 +85,7 @@ try {
       node {
         withCredentials([[
           $class: 'AmazonWebServicesCredentialsBinding',
-          credentialsId: credentialsId,
+          credentialsId: ' credentialsId',
           accessKeyVariable: 'AWS_ACCESS_KEY_ID',
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
