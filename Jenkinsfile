@@ -48,7 +48,12 @@ try {
   // Run terraform plan
   stage('plan') {
     node {
-withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWScredential', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+withCredentials([[
+	$class: 'AmazonWebServicesCredentialsBinding',
+	accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+	credentialsId: 'AWScredential', 
+	secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+	    {
  	  
         ansiColor('xterm') {
           sh 'terraform plan'
@@ -65,10 +70,10 @@ withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariab
     stage('apply') {
       node {
         withCredentials([[
-          $class: 'AmazonWebServicesCredentialsBinding',
-	  credentialsId: 'credentialsId',
-	  accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-          secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+        $class: 'AmazonWebServicesCredentialsBinding',
+	accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+	credentialsId: 'AWScredential', 
+	secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
         ]]) {
           ansiColor('xterm') {
             sh 'terraform apply -auto-approve'
@@ -81,10 +86,10 @@ withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariab
     stage('show') {
       node {
         withCredentials([[
-          $class: 'AmazonWebServicesCredentialsBinding',
-	  credentialsId: 'credentialsId',
-	  accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-          secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+        $class: 'AmazonWebServicesCredentialsBinding',
+	accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+	credentialsId: 'AWScredential', 
+	secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
         ]]) {
           ansiColor('xterm') {
             sh 'terraform show'
