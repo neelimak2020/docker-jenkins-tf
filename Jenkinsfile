@@ -47,21 +47,19 @@ try {
 
   // Run terraform plan
   stage('plan') {
-    node {	    
-	   
-      withCredentials([[
-        $class: 'AmazonWebServicesCredentialsBinding',
-	credentialsId: 'credentialsId',       
-	 accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-      ]]) {
+    node {
+	   withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: ' credentialsId', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+
+	  
         ansiColor('xterm') {
           sh 'terraform plan'
         }
-      }
+      }  
     }
-  }
-
+  }	  
+	  
+	   
+  
   if (env.BRANCH_NAME == 'master') {
 
     // Run terraform apply
